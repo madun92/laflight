@@ -15,11 +15,13 @@ class CreateFlightsTable extends Migration
     {
         Schema::create('flights', function (Blueprint $table){
             $table->increments('id');
+            $table->integer('aircraft_id')->unsigned();
             $table->string('name');
-            $table->string('plane_code');
+            $table->string('slug');
             $table->integer('price')->nullable();
+            $table->integer('qty')->nullable();
             $table->enum('class',['Bussiness','Economy'])->nullable();
-            $table->integer('airline_id')->unsigned()->nullable();
+            // $table->integer('airline_id')->unsigned()->nullable();
             $table->timestamp('depart')->nullable();
             $table->timestamp('arrive')->nullable();
             $table->timestamps();
