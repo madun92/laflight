@@ -221,8 +221,34 @@
             </div>
         </div>
     </nav> --}}
+<div class="wrapper row-offcanvas row-offcanvas-left">
     @include('back.partials.sidebar')
+<aside class="right-side">
+    <section class="content-header">
+        <h1>Simple Tables</h1>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">
+                    <i class="fa fa-fw ti-home"></i> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#">DataTables</a>
+            </li>
+            <li class="active">
+                Simple Tables
+            </li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
     @yield('content')
+        </div>
+    </section>
+
+</aside>
+</div>
 {{-- </div> --}}
 
 <!-- Scripts -->

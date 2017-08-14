@@ -26,6 +26,12 @@ class RolesTableSeeder extends Seeder
 	    	'updated_at' => Carbon::now()
 	    	],
 	    	[
+	    	'title' => 'Agent',
+	    	'slug' => 'contributor',
+	    	'created_at' => Carbon::now(),
+	    	'updated_at' => Carbon::now()
+	    	],
+	    	[
 	    	'title' => 'Customer',
 	    	'slug' => 'customer',
 	    	'created_at' => Carbon::now(),

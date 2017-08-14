@@ -14,13 +14,15 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
-
+    $roles = [2,3,4];
+    $key = array_rand($roles);
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'address' => $faker->address,
-        'role_id' => 3,
+        'role_id' => $roles[$key],
+        'phone' => $faker->phoneNumber,
         'remember_token' => str_random(10),
     ];
 });

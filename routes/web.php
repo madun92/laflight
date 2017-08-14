@@ -25,17 +25,17 @@ Route::get('/', 'Front\FrontController@index')->name('front');
  *  Frontend Routes
  */
 Route::group(['middleware' => 'auth', 'namespace' => 'Front'], function(){
-	Route::get('/', 'BackController@index');
+	Route::get('/', 'FrontController@index');
 	Route::group(['middleware' => ['auth', 'Role:admin']], function(){
 
-		Route::resource('user', 'UserController');
+		// Route::resource('user', 'UserController');
 	});
 });
 /**
  *  Backend Routes
  */
 Route::group(['middleware' => ['auth', 'Role:admin,editor'], 'prefix' => 'back', 'namespace' => 'Back'], function(){
-	Route::get('/', 'BackController@index');
+	// Route::get('/', 'BackController@index');
 	Route::group(['middleware' => ['auth', 'Role:admin']], function(){
 
 		Route::resource('user', 'UserController');

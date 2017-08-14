@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Back;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class BackController extends Controller
 {
@@ -14,7 +15,7 @@ class BackController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
     }
 
     /**

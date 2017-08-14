@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Back;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -14,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('back.user.index');
+        $users = User::paginate(5);
+        return view('back.user.index', compact('users'));
     }
 
     /**
@@ -24,7 +27,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
+        $roles = Role::all();
+        return view('back.user.add', compact('roles'));
     }
 
     /**
@@ -35,7 +40,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'password' => 'required',
+            ]);
+        $user = $request->only('name', 'email', 'phone', 'address', 'role_id');
+
+        $request->has('password') ? $user = $request->get('password') : false;
+
+        User::create($user);
+        
+        return redirect('back/user');
     }
 
     /**
@@ -57,7 +75,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles = Role::all();
+        $user = User::find($id);
+
+        return view('back.user.edit', compact(['user', 'roles']));
     }
 
     /**
@@ -69,7 +90,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = $request->only('name', 'email', 'phone', 'address', 'role_id');
+
+        $request->has('password') ? $user = $request->get('password') : false;
+
+        User::where('id', $id)->update($user);
+
+        return redirect('back/user');
     }
 
     /**
